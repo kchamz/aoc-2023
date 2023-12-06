@@ -12,6 +12,16 @@ game = (clean_up(0), clean_up(1))
 time = game[0]
 distance = game[1]
 
-mapping = {x: result for x in range(time) if (result := x * (time - x)) > distance}
+smallest = 0
+for t in range(time):
+    if t * (time - t) > distance:
+        smallest = t
+        break
 
-print(len(mapping))
+biggest = 0
+for t in range(time, -1, -1):
+    if t * (time - t) > distance:
+        biggest = t
+        break
+
+print(len(range(smallest, biggest + 1)))

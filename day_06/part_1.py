@@ -19,8 +19,18 @@ for race in zip(clean_up(0), clean_up(1)):
     time = race[0]
     distance = race[1]
 
-    mapping = {x: result for x in range(time) if (result := x * (time - x)) > distance}
+    smallest = 0
+    for t in range(time):
+        if t * (time - t) > distance:
+            smallest = t
+            break
 
-    games.append(len(mapping))
+    biggest = 0
+    for t in range(time, -1, -1):
+        if t * (time - t) > distance:
+            biggest = t
+            break
+
+    games.append(len(range(smallest, biggest + 1)))
 
 print(reduce(lambda x, y: x * y, games))
